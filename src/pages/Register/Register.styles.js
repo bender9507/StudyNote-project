@@ -33,7 +33,7 @@ export const ButtonBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 40px;
+  padding-top: 20px;
 `;
 export const FormBox = styled.form`
   display: flex;
@@ -48,6 +48,7 @@ export const InputId = styled.input`
   font-size: 15px;
   background-color: #faf5f6;
   border: none;
+  margin-bottom: 10px;
   padding-left: 10px;
   &:focus {
     outline: none;
@@ -60,6 +61,7 @@ export const InputPw = styled.input`
   font-size: 15px;
   background-color: #faf5f6;
   border: none;
+  margin-bottom: 10px;
   padding-left: 10px;
   &:focus {
     outline: none;

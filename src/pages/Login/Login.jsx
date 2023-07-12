@@ -23,6 +23,7 @@ function Login() {
     try {
       const token = await loginUser(id, password);
       const userCheck = await authorizationUser();
+      console.log(userCheck);
       if (userCheck === 200) {
         navigate("/main");
       }
@@ -30,6 +31,7 @@ function Login() {
       setPassword("");
     } catch (error) {
       console.error(error);
+      alert("아이디 또는 비밀번호가 잘못되었습니다.");
     }
   };
 

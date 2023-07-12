@@ -9,6 +9,7 @@ function Register() {
 
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
 
   const onIdChangeHandler = (event) => {
     setId(event.target.value);
@@ -16,8 +17,35 @@ function Register() {
   const onPasswordChangeHandler = (event) => {
     setPassword(event.target.value);
   };
+  const onCheckPasswordChangeHandler = (event) => {
+    setCheckPassword(event.target.value);
+  };
+
   const onSubmitButtonHandler = async (e) => {
     e.preventDefault();
+    const RegExp = /^[a-zA-Z0-9]{4,12}$/; //id와 pwassword 유효성 검사 정규식
+    //이메일 유효성검사
+
+    const objId = document.getElementById("id"); //아이디
+    const objPwd = document.getElementById("password"); //비밀번호
+    const objCheckPwd = document.getElementById("checkPassword"); //비밀번호확인
+
+    if (!RegExp.test(objId.value)) {
+      //아이디 유효성검사
+      alert("아이디는 4~12자의 영문 대소문자와 숫자로만 입력하여 주세요.");
+      return false;
+    }
+    if (!RegExp.test(objPwd.value)) {
+      //패스워드 유효성검사
+      alert("비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력하여 주세요.");
+      return false;
+    }
+    if (objCheckPwd.value != objPwd.value) {
+      //비밀번호와 비밀번호확인이 동일한지 검사
+      alert("비밀번호가 틀립니다. 다시 확인하여 입력해주세요.");
+      return false;
+    }
+
     try {
       await registerUser(id, password);
       setId("");
@@ -42,19 +70,28 @@ function Register() {
           <Styled.FormBox onSubmit={onSubmitButtonHandler}>
             <Styled.InputId
               type="text"
+              id="id"
               value={id}
-              placeholder="아이디를 입력하세요"
+              placeholder="아이디"
               required
               onChange={onIdChangeHandler}
             />
-            <br />
 
             <Styled.InputPw
               type="password"
+              id="password"
               value={password}
-              placeholder="비밀번호를 입력하세요"
+              placeholder="비밀번호"
               required
               onChange={onPasswordChangeHandler}
+            />
+            <Styled.InputPw
+              type="password"
+              id="checkPassword"
+              value={checkPassword}
+              placeholder="비밀번호 확인"
+              required
+              onChange={onCheckPasswordChangeHandler}
             />
             <Styled.ButtonBox>
               <Styled.Button type="submit">JOIN</Styled.Button>

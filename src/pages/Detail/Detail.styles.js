@@ -99,7 +99,7 @@ export const DetailTtitle = styled.input`
   padding-left: 10px;
 
   margin-bottom: 25px;
-  border-radius: 10px;
+  border-radius: 20px;
   &:focus {
     outline: none;
   }
@@ -115,6 +115,9 @@ export const DetailDesc = styled.textarea`
   padding: 10px;
   &:focus {
     outline: none;
+  }
+  &::-webkit-scrollbar {
+    display: none;
   }
 `;
 export const DropdownBox = styled.div`

@@ -54,7 +54,7 @@ export const DetailWriter = styled.input`
   align-items: center;
   height: 30px;
   width: 30%;
-  font-size: 20px;
+  font-size: 18px;
   background-color: #faf5f6;
   border: none;
 
@@ -62,19 +62,25 @@ export const DetailWriter = styled.input`
   margin-right: 10px;
   margin-bottom: 25px;
   border-radius: 10px;
+  &:focus {
+    outline: none;
+  }
 `;
 export const DetailTtitle = styled.input`
   display: flex;
   align-items: center;
   height: 30px;
   width: 65%;
-  font-size: 20px;
+  font-size: 18px;
   background-color: #faf5f6;
   border: none;
   padding-left: 10px;
 
   margin-bottom: 25px;
   border-radius: 10px;
+  &:focus {
+    outline: none;
+  }
 `;
 export const DetailDesc = styled.textarea`
   font-size: 18px;
@@ -85,6 +91,9 @@ export const DetailDesc = styled.textarea`
   background-color: #faf5f6;
   border: none;
   padding: 10px;
+  &:focus {
+    outline: none;
+  }
 `;
 // export const Header = styled.div`
 //   display: flex;

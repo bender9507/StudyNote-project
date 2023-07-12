@@ -17,7 +17,7 @@ function Detail() {
   const params = useParams();
 
   const { isLoading, isError, data } = useQuery(
-    "notes",
+    ["note", params.id],
     () => getNote(params.id),
     { enabled: !!params.id }
   );
@@ -49,8 +49,9 @@ function Detail() {
     };
 
     editMutation.mutate(editedNote);
-    // 게시물 수정 확인 모달, 메인으로 이동
-    // navigate("/main");
+    // 게시물 수정 확인 모달 --> 구현하기
+    // 메인으로 이동할 때 깜빡임
+    navigate("/main");
   };
 
   //삭제 버튼 클릭

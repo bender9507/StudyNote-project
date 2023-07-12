@@ -5,19 +5,28 @@ import { getNotes } from "api/notes";
 import * as Styled from "./Main.styles";
 import renderDate from "utils/renderDate";
 import { PiPencilLineBold } from "react-icons/pi";
+import { authorizationUser } from "api/users";
 
 const Main = () => {
   const navigate = useNavigate();
 
-  //getNotes 해서 노트 데이터 가져오기
-  // 변경작업이 있을 때 mutation 사용
-  // const getMutation = useNotesMutation(getNotes);
-  // getMutation.mutate();
-
   const { isLoading, isError, data } = useQuery("notes", getNotes);
-  // useEffect(() => {
-  //   data?.sort((a, b) => new Date(b.noteTime) - new Date(a.noteTime));
-  // }, [data]);
+
+  useEffect(() => {
+    const userCheck = async () => {
+      try {
+        const res = await authorizationUser();
+        // if (res !== 200) {
+        //   navigate("/login");
+        // }
+      } catch (error) {
+        // 잠깐 메인페이지 들어갔다 나옴 --> 질문하기
+        console.log(error);
+        navigate("/login");
+      }
+    };
+    userCheck();
+  }, []);
 
   if (isLoading) {
     return <h1>로딩 중입니다..</h1>;
@@ -25,8 +34,9 @@ const Main = () => {
   if (isError) {
     return <h1>오류가 발생했습니다..</h1>;
   }
-  console.log(data);
 
+  //다시 메인페이지로 돌아갈 때 캐시데이터가 key 값이 배열이 아닌 객체가 나와서 에러남.
+  //디테일페이지에서 캐시데이터 key 값 다시 설정해줘야함.
   const sortData = [...data].sort(
     (a, b) => new Date(b.noteTime) - new Date(a.noteTime)
   );

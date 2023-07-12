@@ -30,6 +30,7 @@ const authorizationUser = async () => {
       },
     }
   );
+  console.log(response);
   return response.status;
 };
 
