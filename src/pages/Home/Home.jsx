@@ -10,7 +10,7 @@ function Home() {
       <Styled.Container>
         <Styled.Header>
           <AiOutlineSmile size={"50px"} color="#5A4D50" />
-          <h1>Study Note</h1>
+          <Styled.HeaderTitle>Study Note</Styled.HeaderTitle>
         </Styled.Header>
         <Styled.ButtonBox>
           <Styled.Button

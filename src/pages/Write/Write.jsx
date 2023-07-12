@@ -52,7 +52,7 @@ function Write() {
     <Styled.Layout>
       <Styled.Container>
         <Styled.DetailContent>
-          <h1 style={{ margintop: "30px", color: "#5A4D50" }}>Today's Note</h1>
+          <Styled.HeaderTitle>Today's Note</Styled.HeaderTitle>
           <form onSubmit={onSubmitButtonHandler}>
             <Styled.SaveButtonBox>
               <button style={{ background: "transparent", border: "none" }}>

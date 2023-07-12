@@ -29,6 +29,15 @@ export const Header = styled.div`
   color: #5a4d50;
   padding-top: 80px;
 `;
+export const HeaderTitle = styled.div`
+  font-family: "Dovemayo_gothic";
+  font-size: 40px;
+  font-weight: 600;
+  color: #5a4d50;
+  margin-top: 20px;
+  margin-bottom: 10px;
+`;
+
 export const ButtonBox = styled.div`
   display: flex;
   flex-direction: column;

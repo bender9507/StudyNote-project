@@ -12,6 +12,7 @@ const Main = () => {
 
   const { isLoading, isError, data } = useQuery("notes", getNotes);
 
+  // 훅으로 만들어서 페이지마다 적용하기
   useEffect(() => {
     const userCheck = async () => {
       try {
@@ -69,7 +70,7 @@ const Main = () => {
                   <Styled.NoteBox>
                     <Styled.Note>
                       <Styled.NoteWriter>{item.writer}</Styled.NoteWriter>
-                      <div>{item.title}</div>
+                      <Styled.NoteTitle>{item.title}</Styled.NoteTitle>
                     </Styled.Note>
 
                     <Styled.NoteTime>{item.noteDate}</Styled.NoteTime>

@@ -34,16 +34,26 @@ export const DetailHeader = styled.div`
   margin-bottom: 50px;
 `;
 export const HeaderTitle = styled.div`
+  font-family: "Dovemayo_gothic";
   font-size: 35px;
   font-weight: 600;
   color: #5a4d50;
   margin-bottom: 10px;
 `;
+export const Date = styled.div`
+  font-family: "Dovemayo_gothic";
+  font-size: 13px;
+
+  color: #5a4d50;
+`;
 export const HeaderWriter = styled.div`
   display: flex;
   align-items: flex-start;
   padding-right: 10px;
+  font-family: "OTWelcomeRA";
   font-size: 16px;
+  font-weight: 600;
+  color: #5a4d50;
 `;
 export const DetailContent = styled.form`
   /* padding: 5px; */
@@ -89,14 +99,18 @@ export const SaveButtonBox = styled.div`
 //   }
 // `;
 export const DetailTtitle = styled.input`
+  font-family: "SeoulNamsanM";
+
   display: flex;
   align-items: center;
   height: 30px;
   width: 65%;
   font-size: 18px;
+
+  color: #5a4d50;
   background-color: #faf5f6;
   border: none;
-  padding-left: 10px;
+  padding-left: 15px;
 
   margin-bottom: 25px;
   border-radius: 20px;
@@ -105,14 +119,17 @@ export const DetailTtitle = styled.input`
   }
 `;
 export const DetailDesc = styled.textarea`
+  font-family: "SeoulNamsanM";
   font-size: 18px;
-  width: 430px;
-  height: 260px;
+  line-height: 1.4;
+  color: #5a4d50;
+  width: 420px;
+  height: 250px;
   border-radius: 20px;
 
   background-color: #faf5f6;
   border: none;
-  padding: 10px;
+  padding: 15px;
   &:focus {
     outline: none;
   }
@@ -131,6 +148,7 @@ export const Dropdown = styled.ul`
   width: 33px;
   padding: 0;
   margin: 0;
+  color: #5a4d50;
   list-style: none;
 `;
 // export const Note = styled.div`

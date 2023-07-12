@@ -24,7 +24,6 @@ function Register() {
   const onSubmitButtonHandler = async (e) => {
     e.preventDefault();
     const RegExp = /^[a-zA-Z0-9]{4,12}$/; //id와 pwassword 유효성 검사 정규식
-    //이메일 유효성검사
 
     const objId = document.getElementById("id"); //아이디
     const objPwd = document.getElementById("password"); //비밀번호
@@ -57,14 +56,12 @@ function Register() {
     }
   };
 
-  // 회원가입 버튼 누르면 유저 정보 서버에 보내기
-  // 회원가입 버튼 누르면 로그인 페이지로 이동
   return (
     <Styled.Layout>
       <Styled.Container>
         <Styled.Header>
           <AiOutlineSmile size={"50px"} color="#5A4D50" />
-          <h1>WELCOME</h1>
+          <Styled.HeaderTitle>WELCOME</Styled.HeaderTitle>
         </Styled.Header>
         <main>
           <Styled.FormBox onSubmit={onSubmitButtonHandler}>

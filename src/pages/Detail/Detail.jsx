@@ -75,7 +75,7 @@ function Detail() {
         <Styled.DetailHeader>
           <div>
             <Styled.HeaderTitle>MY NOTE</Styled.HeaderTitle>
-            <div>{data?.noteDate}</div>
+            <Styled.Date>{data?.noteDate}</Styled.Date>
           </div>
 
           <Styled.DropdownBox>

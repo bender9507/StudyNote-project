@@ -40,7 +40,7 @@ function Login() {
       <Styled.Container>
         <Styled.Header>
           <AiOutlineSmile size={"50px"} color="#5A4D50" />
-          <h1>LOGIN</h1>
+          <Styled.HeaderTitle>LOGIN</Styled.HeaderTitle>
         </Styled.Header>
         <main>
           <Styled.FormBox onSubmit={onSubmitButtonHandler}>
