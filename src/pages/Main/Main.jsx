@@ -5,23 +5,20 @@ import { getNotes } from "api/notes";
 import * as Styled from "./Main.styles";
 import renderDate from "utils/renderDate";
 import { PiPencilLineBold } from "react-icons/pi";
+import { MdLogout } from "react-icons/md";
 import { authorizationUser } from "api/users";
+import Layout from "components/Layout";
 
 const Main = () => {
   const navigate = useNavigate();
 
   const { isLoading, isError, data } = useQuery("notes", getNotes);
 
-  // 훅으로 만들어서 페이지마다 적용하기
   useEffect(() => {
     const userCheck = async () => {
       try {
         const res = await authorizationUser();
-        // if (res !== 200) {
-        //   navigate("/login");
-        // }
       } catch (error) {
-        // 잠깐 메인페이지 들어갔다 나옴 --> 질문하기
         console.log(error);
         navigate("/login");
       }
@@ -35,23 +32,31 @@ const Main = () => {
   if (isError) {
     return <h1>오류가 발생했습니다..</h1>;
   }
+  const logOut = () => {
+    localStorage.removeItem("accessToken");
+    navigate("/");
+  };
 
-  //다시 메인페이지로 돌아갈 때 캐시데이터가 key 값이 배열이 아닌 객체가 나와서 에러남.
-  //디테일페이지에서 캐시데이터 key 값 다시 설정해줘야함.
   const sortData = [...data].sort(
-    (a, b) => new Date(b.noteTime) - new Date(a.noteTime)
+    (a, b) => new Date(b.date) - new Date(a.date)
   );
   return (
-    <Styled.Layout>
+    <Layout>
       <Styled.Container>
         <Styled.Header>
           <h2>Study Note</h2>
-          <h5 style={{ color: "#5A4D50" }}>{renderDate()}</h5>
+          <Styled.HeaderBox>
+            <Styled.H5>{renderDate()}</Styled.H5>
+            <MdLogout
+              size={"20px"}
+              color="#5A4D50"
+              cursor="pointer"
+              onClick={logOut}
+            />
+          </Styled.HeaderBox>
         </Styled.Header>
         <Styled.Pencil>
-          <h4 style={{ margin: "0", color: "#5A4D50" }}>
-            The more you write, the more you learn.
-          </h4>
+          <h4>The more you write, the more you learn.</h4>
           <PiPencilLineBold
             size={"35px"}
             color="#5A4D50"
@@ -62,26 +67,26 @@ const Main = () => {
           />
         </Styled.Pencil>
 
-        <>
-          <Styled.NoteList>
-            {sortData?.map(function (item) {
-              return (
-                <Styled.StyleLink to={`/detail/${item.id}`} key={item.id}>
-                  <Styled.NoteBox>
-                    <Styled.Note>
-                      <Styled.NoteWriter>{item.writer}</Styled.NoteWriter>
-                      <Styled.NoteTitle>{item.title}</Styled.NoteTitle>
-                    </Styled.Note>
+        <Styled.NoteList>
+          {sortData?.map(function (item) {
+            return (
+              <Styled.StyleLink to={`/detail/${item.id}`} key={item.id}>
+                <Styled.NoteBox>
+                  <Styled.Note>
+                    <Styled.NoteWriter>{item.writer}</Styled.NoteWriter>
+                    <Styled.NoteTitle>{item.title}</Styled.NoteTitle>
+                  </Styled.Note>
 
-                    <Styled.NoteTime>{item.noteDate}</Styled.NoteTime>
-                  </Styled.NoteBox>
-                </Styled.StyleLink>
-              );
-            })}
-          </Styled.NoteList>
-        </>
+                  <Styled.NoteTime>
+                    {new Date(item.date).toDateString()}
+                  </Styled.NoteTime>
+                </Styled.NoteBox>
+              </Styled.StyleLink>
+            );
+          })}
+        </Styled.NoteList>
       </Styled.Container>
-    </Styled.Layout>
+    </Layout>
   );
 };
 

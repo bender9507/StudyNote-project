@@ -1,14 +1,32 @@
 import { authorizationUser, loginUser } from "api/users";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Styled from "./Login.styles";
 import { AiOutlineSmile } from "react-icons/ai";
+import Modal from "components/Modal/Modal";
+import Layout from "components/Layout";
+import Button from "components/Button";
+import { CONFIRM_MESSAGE } from "consts";
 
 function Login() {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const userCheck = async () => {
+      try {
+        const res = await authorizationUser();
+        navigate("/main");
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    userCheck();
+  }, []);
+
+  const [message, setMessage] = useState("");
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const [modalClick, setModalClick] = useState(false);
 
   const onIdChangeHandler = (event) => {
     setId(event.target.value);
@@ -16,8 +34,7 @@ function Login() {
   const onPasswordChangeHandler = (event) => {
     setPassword(event.target.value);
   };
-  // 로그인 버튼 누르면 유저 정보 서버에 보내기
-  // 로그인 버튼 누르면 유저 인가, 메인 main 페이지로 이동
+
   const onSubmitButtonHandler = async (e) => {
     e.preventDefault();
     try {
@@ -31,12 +48,21 @@ function Login() {
       setPassword("");
     } catch (error) {
       console.error(error);
-      alert("아이디 또는 비밀번호가 잘못되었습니다.");
+      setMessage(CONFIRM_MESSAGE);
+      setModalClick(true);
     }
   };
 
   return (
-    <Styled.Layout>
+    <Layout>
+      {modalClick && (
+        <Modal
+          message={message}
+          setMessage={setMessage}
+          setModalClick={setModalClick}
+        />
+      )}
+
       <Styled.Container>
         <Styled.Header>
           <AiOutlineSmile size={"50px"} color="#5A4D50" />
@@ -44,16 +70,15 @@ function Login() {
         </Styled.Header>
         <main>
           <Styled.FormBox onSubmit={onSubmitButtonHandler}>
-            <Styled.InputId
+            <Styled.Input
               type="text"
               value={id}
               placeholder="아이디를 입력하세요"
               required
               onChange={onIdChangeHandler}
             />
-            <br />
 
-            <Styled.InputPw
+            <Styled.Input
               type="password"
               value={password}
               placeholder="비밀번호를 입력하세요"
@@ -61,19 +86,12 @@ function Login() {
               onChange={onPasswordChangeHandler}
             />
             <Styled.ButtonBox>
-              <Styled.Button type="submit">LOGIN</Styled.Button>
+              <Button type="submit">LOGIN</Button>
             </Styled.ButtonBox>
           </Styled.FormBox>
-          {/* <button
-            onClick={() => {
-              navigate("/register");
-            }}
-          >
-            회원가입
-          </button> */}
         </main>
       </Styled.Container>
-    </Styled.Layout>
+    </Layout>
   );
 }
 

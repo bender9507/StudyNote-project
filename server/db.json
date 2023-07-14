@@ -1,76 +1,32 @@
 {
   "notes": [
     {
-      "id": "MMIaX_OJ3",
-      "writer": "제목",
-      "title": "수빈 수정 하기 다시",
-      "desc": "내용 수정 성공하기 다시",
-      "noteTime": "2023-07-11T13:43:03.480Z",
-      "noteDate": "Tue Jul 11 2023"
+      "id": "nkMz7G7g-",
+      "writer": "수빈",
+      "title": "til 정리 끝내기",
+      "desc": "밀린 til 작성하고 wil 초안 작성하기!",
+      "date": "2023-07-14T01:44:42.542Z"
     },
     {
-      "id": "RO-N0hy01",
-      "writer": "명언",
-      "title": "수빈 게시물",
-      "desc": "\"The act of putting pen to paper encourages pause for thought, this in turn makes us think more deeply about life, which helps us regain our equilibrium.\" - Norbet Platt\n(펜을 종이에 대는 행위는 생각에 잠시 멈춤을 주고, 그 결과로 우리는 삶에 대해 더 깊이 생각하게 되며, 이는 우리가 평형을 되찾는 데 도움이 됩니다.)\n\n\"Writing is a way to make sense of the world, to give it structure and order, to explore and discover new ideas.\" - Unknown\n(쓰기는 세상을 이해하기 위한 방법이며, 그것에 구조와 질서를 부여하고, 새로운 아이디어를 탐구하고 발견하는 것입니다.)\n\n\"Writing down your thoughts helps you clarify them, understand them better, and gain new insights.\" - Unknown\n(자신의 생각을 적어내는 것은 그것들을 명확하게 하고, 더 잘 이해하며, 새로운 통찰력을 얻게 해줍니다.)\n\n\n\n",
-      "noteTime": "2023-07-11T13:58:40.414Z",
-      "noteDate": "Tue Jul 11 2023"
+      "id": "YZ-p5Mg_q",
+      "writer": "한별이",
+      "title": "과제 기능 마무리하기",
+      "desc": "기능 끝내고 코드 리뷰하기 !! 꼭",
+      "date": "2023-07-14T01:47:15.463Z"
     },
     {
-      "id": "aRu3h6QXX",
-      "writer": "제목",
-      "title": "다섯글자",
-      "desc": "내용",
-      "noteTime": "2023-07-11T15:22:23.586Z",
-      "noteDate": "Wed Jul 12 2023"
+      "id": "4ZnKy14yj",
+      "writer": "나그네",
+      "title": "초집중 모드로 과제 끝내기",
+      "desc": "코드 정리하기 (특히 주석 정리..)",
+      "date": "2023-07-14T01:47:57.117Z"
     },
     {
-      "id": "ibYUlQldk",
-      "writer": "수정제목",
-      "title": "게시글 추가",
-      "desc": "게시글 추가 ",
-      "noteTime": "2023-07-12T03:08:58.319Z",
-      "noteDate": "Wed Jul 12 2023"
-    },
-    {
-      "id": "HyuEl67Am",
-      "writer": "작성자",
-      "title": "공부 목표",
-      "desc": "공부 계획 \n공부할 내용sdas",
-      "noteTime": "2023-07-12T10:39:27.222Z",
-      "noteDate": "Wed Jul 12 2023"
-    },
-    {
-      "id": "Zt5CrZjX4",
-      "writer": "작성자",
-      "title": "제목",
-      "desc": "내용입니다",
-      "noteTime": "2023-07-12T14:23:33.815Z",
-      "noteDate": "Wed Jul 12 2023"
-    },
-    {
-      "id": "RqrC2Z02F",
-      "writer": "짱구짱구",
-      "title": "짱구 게시물 수정 할까요 ?",
-      "desc": "게시물 등록하고 갑니다 수정합니다",
-      "noteTime": "2023-07-12T15:25:30.659Z",
-      "noteDate": "Thu Jul 13 2023"
-    },
-    {
-      "id": "zHwE5MxiE",
-      "writer": "한별",
-      "title": "한별이 게시물",
-      "desc": "오늘의 공부 목표\ntil 모두 작성하기\n코드리뷰 \n조원들이랑 나누기",
-      "noteTime": "2023-07-12T16:34:44.312Z",
-      "noteDate": "Thu Jul 13 2023"
-    },
-    {
-      "id": "SpgwqNEF6",
-      "writer": "투두리스",
-      "title": "고쳤",
-      "desc": "투드리스트 고쳤어요",
-      "noteTime": "2023-07-12T16:40:07.895Z",
-      "noteDate": "Thu Jul 13 2023"
+      "id": "f2qqKrRnr",
+      "writer": "짱구",
+      "title": "공부한 내용 복습",
+      "desc": "일주일간 공부한 내용 기록하기\n",
+      "date": "2023-07-14T01:48:35.321Z"
     }
   ]
 }

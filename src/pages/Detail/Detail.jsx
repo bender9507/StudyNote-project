@@ -1,19 +1,26 @@
-import { deleteNote, editNote, getNote, getNotes } from "api/notes";
-
-import useNotesMutation from "components/useNotesMutation";
+import { editNote, getNote } from "api/notes";
+import useNotesMutation from "hooks/useNotesMutation";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import * as Styled from "./Detail.styles";
 import { FaSave } from "react-icons/fa";
+import Layout from "components/Layout";
+import Modal from "components/Modal/Modal";
+import { DETAIL_DELETE_MESSAGE, DETAIL_EDIT_MESSAGE } from "consts";
+import { BsFillTrash3Fill } from "react-icons/bs";
+import { BsFillPencilFill } from "react-icons/bs";
+import { BiHome } from "react-icons/bi";
 
 function Detail() {
   const [view, setView] = useState(false);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [readOnly, setReadOnly] = useState(true);
-  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+  const [modalClick, setModalClick] = useState(false);
 
+  const navigate = useNavigate();
   const params = useParams();
 
   const { isLoading, isError, data } = useQuery(
@@ -23,7 +30,6 @@ function Detail() {
   );
 
   const editMutation = useNotesMutation(editNote);
-  const deleteMutation = useNotesMutation(deleteNote);
 
   useEffect(() => {
     if (data) {
@@ -38,29 +44,27 @@ function Detail() {
   const onDescChangeHandler = (event) => {
     setDesc(event.target.value);
   };
+  // 수정 버튼
   const editButtonHandler = () => {
     setReadOnly(false);
   };
-  const saveButtonHandler = () => {
+  // 수정 내용 저장
+  const saveButtonHandler = (e) => {
+    e.preventDefault();
     const editedNote = {
       ...data,
       title,
       desc,
     };
+    setMessage(DETAIL_EDIT_MESSAGE);
+    setModalClick(true);
 
     editMutation.mutate(editedNote);
-    // 게시물 수정 확인 모달 --> 구현하기
-    // 메인으로 이동할 때 깜빡임
-    navigate("/main");
   };
-
-  //삭제 버튼 클릭
-  const clickDeleteButtonHandler = (id) => {
-    const confirmDelete = window.confirm("정말 삭제하시겠습니까?");
-    if (!confirmDelete) return;
-    else if (confirmDelete) alert("게시물이 삭제되었습니다.");
-    deleteMutation.mutate(id);
-    navigate("/main");
+  // 삭제 버튼
+  const deleteButtonHandler = () => {
+    setMessage(DETAIL_DELETE_MESSAGE);
+    setModalClick(true);
   };
 
   if (isLoading) {
@@ -70,16 +74,25 @@ function Detail() {
     return <h1>오류가 발생했습니다..</h1>;
   }
   return (
-    <Styled.Layout>
+    <Layout>
+      {modalClick && (
+        <Modal
+          message={message}
+          setMessage={setMessage}
+          setModalClick={setModalClick}
+          id={data.id}
+        />
+      )}
+
       <Styled.Container>
         <Styled.DetailHeader>
           <div>
             <Styled.HeaderTitle>MY NOTE</Styled.HeaderTitle>
-            <Styled.Date>{data?.noteDate}</Styled.Date>
+            <Styled.Date>{new Date(data.date).toDateString()}</Styled.Date>
           </div>
 
           <Styled.DropdownBox>
-            <Styled.HeaderWriter>{data?.writer}</Styled.HeaderWriter>
+            <Styled.HeaderWriter>{data?.writer} 's</Styled.HeaderWriter>
             <Styled.Dropdown
               onClick={() => {
                 setView(!view);
@@ -88,13 +101,25 @@ function Detail() {
               {view ? "▲" : "▼"}
               {view && (
                 <>
-                  <li onClick={editButtonHandler}>수정</li>
-                  <li onClick={() => clickDeleteButtonHandler(data?.id)}>
-                    삭제
+                  <li>
+                    <BsFillPencilFill onClick={editButtonHandler} />
+                  </li>
+                  <li>
+                    <BsFillTrash3Fill
+                      onClick={() => deleteButtonHandler(data?.id)}
+                    />
                   </li>
                 </>
               )}
             </Styled.Dropdown>
+            <BiHome
+              size={"20px"}
+              color="#5A4D50"
+              cursor="pointer"
+              onClick={() => {
+                navigate("/main");
+              }}
+            />
           </Styled.DropdownBox>
         </Styled.DetailHeader>
 
@@ -108,11 +133,10 @@ function Detail() {
               required
               readOnly={readOnly}
               onChange={onTitleChangeHandler}
-            ></Styled.DetailTtitle>
-            {/* <button onClick={saveButtonHandler}>수정 완료</button> */}
+            />
             {!readOnly && (
               <Styled.SaveButtonBox>
-                <button style={{ background: "transparent", border: "none" }}>
+                <button>
                   <FaSave
                     size={"35px"}
                     color="#5A4D50"
@@ -131,12 +155,10 @@ function Detail() {
             required
             readOnly={readOnly}
             onChange={onDescChangeHandler}
-          ></Styled.DetailDesc>
-          {/* <Styled.DetailTtitle>{data?.title}</Styled.DetailTtitle>
-          <Styled.DetailDesc>{data?.desc}</Styled.DetailDesc> */}
+          />
         </Styled.DetailContent>
       </Styled.Container>
-    </Styled.Layout>
+    </Layout>
   );
 }
 

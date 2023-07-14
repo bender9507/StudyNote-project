@@ -2,16 +2,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import "App.css";
 
-export const Layout = styled.div`
-  max-width: 1200px;
-  min-width: 1000px;
-
-  display: flex;
-  justify-content: center;
-
-  margin: 130px auto;
-`;
-
 export const Container = styled.div`
   box-shadow: 5px 5px 20px 5px #e5e5e5;
   border-radius: 40px;
@@ -27,15 +17,30 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+export const HeaderBox = styled.div`
+  font-family: "Dovemayo_gothic";
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+export const H5 = styled.h5`
+  font-family: "Dovemayo_gothic";
+  color: #5a4d50;
+  display: flex;
+  padding-right: 5px;
+`;
 export const Pencil = styled.div`
   font-family: "Dovemayo_gothic";
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  h4 {
+    margin: 0;
+    color: #5a4d50;
+  }
 `;
 
 export const NoteList = styled.div`
-  /* border: 1px solid black; */
   margin-top: 50px;
   height: 65%;
   overflow-y: auto;
@@ -51,7 +56,6 @@ export const StyleLink = styled(Link)`
 `;
 
 export const NoteBox = styled.div`
-  /* border: 1px solid black; */
   background-color: #faf5f6;
   border-radius: 15px;
 
@@ -61,11 +65,8 @@ export const NoteBox = styled.div`
 `;
 export const Note = styled.div`
   display: flex;
-  /* border: 1px solid black; */
   width: 100%;
   height: 30px;
-
-  /* margin-bottom: 10px; */
 `;
 export const NoteWriter = styled.div`
   font-family: "SeoulNamsanM";
@@ -78,16 +79,7 @@ export const NoteTitle = styled.div`
   width: 85%;
   font-weight: 500;
 `;
-// export const NoteDesc = styled.div`
-//   font-family: "OTWelcomeRA";
-//   margin-left: 90px;
-//   padding-top: 10px;
-//   width: 85%
-//   height: 40px;
-//   overflow: hidden;
-//   white-space: nowrap;
-//   text-overflow: ellipsis;
-// `;
+
 export const NoteTime = styled.div`
   font-family: "Dovemayo_gothic";
   display: flex;

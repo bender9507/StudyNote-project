@@ -1,14 +1,27 @@
 import { addNote } from "api/notes";
-import useNotesMutation from "components/useNotesMutation";
-import React, { useState } from "react";
+import useNotesMutation from "hooks/useNotesMutation";
+import React, { useEffect, useState } from "react";
 import * as Styled from "./Write.styles";
 import shortid from "shortid";
 import { FaSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { authorizationUser } from "api/users";
+import Layout from "components/Layout";
+import renderDate from "utils/renderDate";
+import { BiHome } from "react-icons/bi";
 
 function Write() {
-  const date = new Date();
-  const noteDate = date.toDateString();
+  useEffect(() => {
+    const userCheck = async () => {
+      try {
+        const res = await authorizationUser();
+      } catch (error) {
+        console.log(error);
+        navigate("/login");
+      }
+    };
+    userCheck();
+  }, []);
 
   const navigate = useNavigate();
 
@@ -27,8 +40,7 @@ function Write() {
   const onDescChangeHandler = (event) => {
     setDesc(event.target.value);
   };
-  // 게시글 저장 버튼 누르면 게시글 내용 서버에 보내기
-  // 그리고 메인 페이지로 이동
+
   const onSubmitButtonHandler = (e) => {
     e.preventDefault();
 
@@ -37,8 +49,7 @@ function Write() {
       writer,
       title,
       desc,
-      noteTime: date,
-      noteDate,
+      date: new Date(),
     };
 
     addMutation.mutate(newNote);
@@ -48,14 +59,29 @@ function Write() {
     setDesc("");
     navigate("/main");
   };
+
   return (
-    <Styled.Layout>
+    <Layout>
       <Styled.Container>
         <Styled.DetailContent>
-          <Styled.HeaderTitle>Today's Note</Styled.HeaderTitle>
+          <Styled.Header>
+            <Styled.HeaderTitle>Today's Note</Styled.HeaderTitle>
+            <Styled.HeaderBox>
+              <Styled.H5>{renderDate()}</Styled.H5>
+              <BiHome
+                size={"20px"}
+                color="#5A4D50"
+                cursor="pointer"
+                onClick={() => {
+                  navigate("/main");
+                }}
+              />
+            </Styled.HeaderBox>
+          </Styled.Header>
+
           <form onSubmit={onSubmitButtonHandler}>
             <Styled.SaveButtonBox>
-              <button style={{ background: "transparent", border: "none" }}>
+              <button>
                 <FaSave size={"35px"} color="#5A4D50" cursor="pointer" />
               </button>
             </Styled.SaveButtonBox>
@@ -68,7 +94,7 @@ function Write() {
                 maxLength="4"
                 required
                 onChange={onWriterChangeHandler}
-              ></Styled.DetailWriter>
+              />
               <Styled.DetailTtitle
                 type="text"
                 value={title}
@@ -76,7 +102,7 @@ function Write() {
                 maxLength="24"
                 required
                 onChange={onTitleChangeHandler}
-              ></Styled.DetailTtitle>
+              />
             </Styled.DetailUpperBox>
 
             <Styled.DetailDesc
@@ -85,11 +111,11 @@ function Write() {
               placeholder="내용"
               required
               onChange={onDescChangeHandler}
-            ></Styled.DetailDesc>
+            />
           </form>
         </Styled.DetailContent>
       </Styled.Container>
-    </Styled.Layout>
+    </Layout>
   );
 }
 
